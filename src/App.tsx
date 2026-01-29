@@ -1,46 +1,22 @@
-import { useState } from 'react'
-import { ParallaxBanner, ParallaxProvider } from 'react-scroll-parallax';
+import { ParallaxBanner, useParallax } from 'react-scroll-parallax';
 import './App.css'
+import CustomNav from './components/CustomNav';
 
 function App() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const parallax = useParallax<HTMLDivElement>({
+    translateX: [0, 0, 'easeOutQuint'],
+    translateY: [20, -60, 'easeInQuint'],
+  });
+
+  const parallax2 = useParallax<HTMLDivElement>({
+    translateX: [0, 0, 'easeOutQuint'],
+    translateY: [-20, 60, 'easeInQuint'],
+  });
 
   return (
     <div className="bg-white">
       {/* Navbar */}
-      <nav className="bg-teal-50 shadow-md sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-teal-600">SkillBuilder</div>
-          <div className="hidden md:flex space-x-8">
-            <a href="#home" className="text-gray-700 hover:text-teal-600 transition">Home</a>
-            <a href="#features" className="text-gray-700 hover:text-teal-600 transition">Features</a>
-            <a href="#courses" className="text-gray-700 hover:text-teal-600 transition">Courses</a>
-            <a href="#about" className="text-gray-700 hover:text-teal-600 transition">About</a>
-            <a href="#contact" className="text-gray-700 hover:text-teal-600 transition">Contact</a>
-          </div>
-          <button className="hidden md:block bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition">
-            Get Started
-          </button>
-          <button 
-            className="md:hidden text-teal-600"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            ☰
-          </button>
-        </div>
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-teal-50 px-4 py-4 space-y-2">
-            <a href="#home" className="block text-gray-700 hover:text-teal-600">Home</a>
-            <a href="#features" className="block text-gray-700 hover:text-teal-600">Features</a>
-            <a href="#courses" className="block text-gray-700 hover:text-teal-600">Courses</a>
-            <a href="#about" className="block text-gray-700 hover:text-teal-600">About</a>
-            <a href="#contact" className="block text-gray-700 hover:text-teal-600">Contact</a>
-            <button className="w-full bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700">
-              Get Started
-            </button>
-          </div>
-        )}
-      </nav>
+      <CustomNav />
 
       {/* Hero Section */}
       <section id="home" className="bg-gradient-to-br from-teal-50 via-teal-100 to-cyan-50 py-20 px-4">
@@ -62,12 +38,24 @@ function App() {
             </div>
           </div>
           <div className="flex justify-center">
-            <div className="bg-teal-200 rounded-lg overflow-hidden shadow-xl w-full h-96">
-              <img 
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" 
-                alt="Learning" 
-                className="w-full h-full object-cover"
-              />
+            <div className="bg-teal-200 w-full h-96 relative">
+              {/* Bottom Left */}
+              <div ref={parallax.ref} className="absolute bottom-0 left-0 w-1/2 h-1/2 flex justify-center items-center rounded-lg overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" 
+                  alt="Learning" 
+                  className="w-[90%] h-[90%] object-cover"
+                />
+              </div>
+              
+              {/* Top Right */}
+              <div ref={parallax2.ref} className="absolute top-0 right-0 w-1/2 h-1/2 flex justify-center items-center rounded-lg overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" 
+                  alt="Learning" 
+                  className="w-[90%] h-[90%] object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -261,7 +249,6 @@ function App() {
 
       {/* Parallax Section */}
       <section className="relative py-20 px-4 overflow-hidden">
-        <ParallaxProvider>
         <ParallaxBanner
           layers={[
             {
@@ -286,7 +273,6 @@ function App() {
           ]}
           className="aspect-video"
         />
-        </ParallaxProvider>
       </section>
 
       {/* Call to Action Section */}
