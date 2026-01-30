@@ -9,10 +9,9 @@ const CustomNav: React.FC = () => {
           <Link to="/" className="text-2xl font-bold text-teal-600">SkillBuilder</Link>
           <div className="hidden md:flex space-x-8">
             <a href="#home" className="text-gray-700 hover:text-teal-600 transition">Home</a>
-            <a href="#features" className="text-gray-700 hover:text-teal-600 transition">Features</a>
-            <a href="#courses" className="text-gray-700 hover:text-teal-600 transition">Courses</a>
+            <a href="#courses" className="text-gray-700 hover:text-teal-600 transition">Explore the Platform</a>
             <Link to="/about" className="text-gray-700 hover:text-teal-600 transition">About</Link>
-            <a href="#contact" className="text-gray-700 hover:text-teal-600 transition">Contact</a>
+            <a href="#contact" className="text-gray-700 hover:text-teal-600 transition">Partner With Us</a>
           </div>
           <Link to="/login" className="hidden md:block bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition">
             Get Started

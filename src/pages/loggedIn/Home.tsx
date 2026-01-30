@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import ApplicationContext from "../../../resources/providers/ApplicationContext";
 import VideoTile from "../../widgets/VideoTile";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
 
 const HomePage: React.FC = () => {
     const applicationContext = useContext(ApplicationContext);
@@ -36,13 +37,15 @@ const HomePage: React.FC = () => {
         {
             applicationContext?.categories.length === 0 ? <div>No categories found.</div> :
             <Swiper
+                modules={[Navigation]}
                 slidesPerView={5}
                 spaceBetween={20}
+                navigation
                 pagination={{ clickable: true }}
                 className="mySwiper"
             >
                 {
-                    applicationContext!.categories.slice(0,4).map((category, index) => (
+                    applicationContext!.categories.map((category, index) => (
                         <SwiperSlide key={index}>
                         <div  className="bg-white rounded-lg shadow-md p-2 flex flex-col items-center my-4">
                             <div className="text-sm mb-4">{category.name}</div>

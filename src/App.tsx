@@ -1,11 +1,14 @@
 import { useParallax } from 'react-scroll-parallax';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 import './App.css'
 import CustomNav from './components/CustomNav';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import SkillsSection from './widgets/SkillsSection';
+import { Navigation } from 'swiper/modules';
 
 function App() {
   const parallax = useParallax<HTMLDivElement>({
@@ -34,12 +37,12 @@ function App() {
               One digital platform to develop in-demand skills, gain hands-on experience, and prepare for the future of work through projects, collaboration, and global exposure.
             </p>
             <div className="flex gap-4">
-              <button className="bg-teal-600 text-white px-8 py-3 rounded-lg text-lg hover:bg-teal-700 transition">
+              {/* <Link to="/login" className="bg-teal-600 text-white px-8 py-3 rounded-lg text-lg hover:bg-teal-700 transition">
                 Start Learning Today
-              </button>
-              <button className="border-2 border-teal-600 text-teal-600 px-8 py-3 rounded-lg text-lg hover:bg-teal-50 transition">
-                Learn More
-              </button>
+              </Link> */}
+              <Link to="/login" className="border-2 border-teal-600 text-teal-600 px-8 py-3 rounded-lg text-lg hover:bg-teal-50 transition">
+                Start Learning Today
+              </Link>
             </div>
           </div>
           <div className="flex justify-center">
@@ -94,10 +97,13 @@ function App() {
         <div className="max-w-6xl mx-auto gap-12">
           <div className="text-left mb-12">
             <h2 className="text-4xl font-bold-100 text-center text-gray-500 mb-8">Who its for</h2>
-            <h6 className='font-thin text-center text-gray-700 mb-16'>We focus on four core capability areas that power employability:</h6>
+            <h6 className='font-thin text-center text-gray-700 mb-5'>We focus on four core capability areas that power employability:</h6>
+              <hr className='hr mb-16'/>
           </div>
           <Swiper
             slidesPerView={4}
+            modules={[Navigation]}
+            navigation
             spaceBetween={20}
             pagination={{ clickable: true }}
             className="mySwiper"
@@ -152,13 +158,19 @@ function App() {
 
       {/* Call to Action Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-teal-600 to-cyan-500">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">Ready to Transform Your Career?</h2>
+        <div className="w-auto mx-auto text-center">
+          <h2 className="text-4xl font-bold text-white mb-6">Ready to Build Your Future?</h2>
           <p className="text-xl text-teal-50 mb-8">
-            Join thousands of young professionals who are already advancing their careers with SkillBuilder.
+            Learn by doing. Build skills that matter. Create impact that lasts.
           </p>
           <Link to="/learn/home" className="bg-white text-teal-600 px-10 py-4 rounded-lg text-lg font-bold hover:bg-teal-50 transition">
-            Start Your Learning Journey
+            Get Started
+          </Link>
+          <Link to="/learn/home" className="bg-white text-teal-600 px-10 py-4 rounded-lg text-lg font-bold hover:bg-teal-50 transition mx-5">
+            Partner With Us
+          </Link>
+          <Link to="/learn/home" className="bg-white text-teal-600 px-10 py-4 rounded-lg text-lg font-bold hover:bg-teal-50 transition">
+            Request a Demo
           </Link>
         </div>
       </section>

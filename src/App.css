@@ -13,4 +13,24 @@
   background-color: tomato;
 }
 
+/* Change arrow color and size */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #14b8a6; /* your color */
+  width: 20px;
+  height: 20px;
+  font-weight: bold;
+}
 
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px; /* arrow size */
+}
+
+.hr {
+  border: none;           /* Removes the default border */
+  height: 1px;            /* Sets the line thickness */
+  background-color: rgb(161, 161, 161); /* Changes the line color */
+  width: 30%;             /* Adjusts the line's width */
+  margin: 20px 20%;     
+}

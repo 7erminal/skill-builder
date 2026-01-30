@@ -5,7 +5,8 @@ const SkillsSection: React.FC = () => {
       <section id="features" className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold-100 text-center text-gray-500 mb-8">Our Skills Framework</h2>
-          <h6 className='font-thin text-center text-gray-700 mb-16'>We focus on four core capability areas that power employability:</h6>
+          <h6 className='font-thin text-center text-gray-700 mb-5'>We focus on four core capability areas that power employability:</h6>
+          <hr className='hr mb-16'/>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Feature 1 */}
             <div className="bg-teal-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition">
