@@ -2,6 +2,7 @@ import React from "react";
 import CustomNav from "../components/CustomNav";
 import { useParallax } from "react-scroll-parallax";
 import SkillsSection from "../widgets/SkillsSection";
+import Footer from "../widgets/Footer";
 
 const AboutPage: React.FC = () => {
   const parallax = useParallax<HTMLDivElement>({
@@ -74,6 +75,7 @@ const AboutPage: React.FC = () => {
             </div> */}
           </div>
           <SkillsSection />
+          <Footer />
     </div>
 }
 
