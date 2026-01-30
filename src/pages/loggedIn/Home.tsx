@@ -38,7 +38,13 @@ const HomePage: React.FC = () => {
             applicationContext?.categories.length === 0 ? <div>No categories found.</div> :
             <Swiper
                 modules={[Navigation]}
-                slidesPerView={5}
+                slidesPerView={1}
+                breakpoints={{
+                    640: { slidesPerView: 2 },
+                    768: { slidesPerView: 3 },
+                    1024: { slidesPerView: 4 },
+                    1280: { slidesPerView: 5 }
+                }}
                 spaceBetween={20}
                 navigation
                 pagination={{ clickable: true }}

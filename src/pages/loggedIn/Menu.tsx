@@ -10,14 +10,14 @@ const Menu: React.FC = () => {
     return (
     <div className='bg-white h-full w-full'>
                     <div className="bg-white text-gray-800 font-sans">
-                        <div className="flex h-screen overflow-hidden">
-                            <div className="w-1/5 relative">
-                                <div className="absolute right-0 top-50 bottom-50 w-px bg-gray-300"></div>
+                        <div className="flex flex-col md:flex-row h-screen overflow-hidden">
+                            <div className="w-full md:w-1/5 relative order-2 md:order-1 md:border-r border-gray-300">
+                                <div className="hidden md:block absolute right-0 top-50 bottom-50 w-px bg-gray-300"></div>
                                 
-                                <div className="h-full p-6 pr-8 overflow-y-auto flex flex-col">
+                                <div className="h-auto md:h-full p-4 md:p-6 md:pr-8 overflow-y-auto flex flex-col">
                                     {/* <h1 className="text-2xl font-bold mb-8 text-gray-800">Dashboard</h1> */}
                                     
-                                    <nav className="space-y-2 flex flex-col gap-2 justify-center items-center flex-1">
+                                    <nav className="space-y-2 flex flex-row md:flex-col gap-2 justify-start md:justify-center items-center md:items-center flex-1">
                                         <Link to="/courses" className="flex items-center p-3 text-gray-800 hover:bg-gray-100 rounded-lg transition-colors duration-200">
                                             <Icon icon="tdesign:course" className="mx-4" style={{ color: "#51A2FF", fontSize: '20px' }} />
                                             Courses

@@ -36,6 +36,13 @@ const VideoTile: React.FC<VideoTileProps> = ({ video }) => {
                     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
                 }
 
+                @media (max-width: 640px) {
+                    .video-tile:active {
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+                    }
+                }
+
                 .video-image {
                     position: relative;
                     width: 100%;
@@ -66,8 +73,21 @@ const VideoTile: React.FC<VideoTileProps> = ({ video }) => {
                     font-weight: 600;
                 }
 
+                @media (max-width: 640px) {
+                    .duration-badge {
+                        font-size: 11px;
+                        padding: 3px 6px;
+                    }
+                }
+
                 .video-info {
                     padding: 16px;
+                }
+
+                @media (max-width: 640px) {
+                    .video-info {
+                        padding: 12px;
+                    }
                 }
 
                 .video-title {
@@ -76,6 +96,13 @@ const VideoTile: React.FC<VideoTileProps> = ({ video }) => {
                     font-weight: 700;
                     color: #1a202c;
                     line-height: 1.4;
+                }
+
+                @media (max-width: 640px) {
+                    .video-title {
+                        font-size: 14px;
+                        margin: 0 0 6px 0;
+                    }
                 }
 
                 .video-description {
@@ -89,11 +116,25 @@ const VideoTile: React.FC<VideoTileProps> = ({ video }) => {
                     overflow: hidden;
                 }
 
+                @media (max-width: 640px) {
+                    .video-description {
+                        font-size: 12px;
+                        -webkit-line-clamp: 2;
+                        margin: 0 0 8px 0;
+                    }
+                }
+
                 .video-date {
                     margin: 0;
                     font-size: 12px;
                     color: #a0aec0;
                     font-weight: 500;
+                }
+
+                @media (max-width: 640px) {
+                    .video-date {
+                        font-size: 11px;
+                    }
                 }
             `}</style>
         </div>

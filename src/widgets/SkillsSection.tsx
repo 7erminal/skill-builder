@@ -2,12 +2,12 @@ import React from "react";
 
 const SkillsSection: React.FC = () => {
     return (
-      <section id="features" className="py-20 px-4 bg-white">
+      <section id="features" className="py-12 sm:py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold-100 text-center text-gray-500 mb-8">Our Skills Framework</h2>
-          <h6 className='font-thin text-center text-gray-700 mb-5'>We focus on four core capability areas that power employability:</h6>
-          <hr className='hr mb-16'/>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <h2 className="text-2xl sm:text-4xl font-bold-100 text-center text-gray-500 mb-4 sm:mb-8">Our Skills Framework</h2>
+          <h6 className='text-sm sm:text-base font-thin text-center text-gray-700 mb-5'>We focus on four core capability areas that power employability:</h6>
+          <hr className='hr mb-8 sm:mb-16'/>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
             {/* Feature 1 */}
             <div className="bg-teal-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition">
               <h3 className="text-2xl font-bold text-teal-800 mb-4">Self-Awareness</h3>

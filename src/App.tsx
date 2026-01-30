@@ -73,9 +73,9 @@ function App() {
       <SkillsSection />
 
       {/* Courses Preview Section */}
-      <section id="courses" className="py-10 items-center">
-        <div className='bg-gray-800 rounded-3xl min-h-20 max-w-6xl mx-auto p-20'>
-          <div className='grid grid-cols-2 md:grid-cols-2 gap-2'>
+      <section id="courses" className="py-10 items-center px-4">
+        <div className='bg-gray-800 rounded-3xl min-h-20 max-w-6xl mx-auto p-6 md:p-20'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-2'>
             <div className='flex flex-col gap-10 justify-center'>
               <h3 className='text-white text-3xl font-bold'>Our Approach</h3>
               <div className='grid grid-cols-2 gap-2'>
