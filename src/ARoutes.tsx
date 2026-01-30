@@ -3,6 +3,7 @@ import { Route, Routes, Navigate, BrowserRouter as Router } from "react-router-d
 import App from "./App.tsx";
 import { ApplicationProvider } from "../resources/providers/ApplicationProvider.tsx";
 import Menu from "./pages/loggedIn/Menu.tsx";
+import AboutPage from "./pages/AboutPage.tsx";
 
 
 const ARoutes: React.FC = () => {
@@ -12,6 +13,7 @@ const ARoutes: React.FC = () => {
               <Router>
                 <Routes>
                     <Route path='/' element={<App />} />
+                    <Route path='/about' element={<AboutPage />} />
                     <Route path='/learn/*' element={<Menu />} />
                     <Route path="*" element={<Navigate replace to="/" />} />
                 </Routes>

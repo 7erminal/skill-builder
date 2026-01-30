@@ -1,22 +1,23 @@
 import React from "react";
 import type { Video } from '../../resources/types/applicationTypes';
 
-type VideoTileProps = Video;
+type VideoTileProps = 
+{video: Video}
 
-const VideoTile: React.FC<VideoTileProps> = ({ videoFile, title, description, created_at }) => {
+const VideoTile: React.FC<VideoTileProps> = ({ video }) => {
     return (
-        <div className="video-tile">
+        <div className="video-tile min-w-70">
             {/* Video Image */}
             <div className="video-image">
-                <img src={videoFile} alt={title} />
+                <img src={video.thumbnail} alt={video.title} />
                 <span className="duration-badge">10 mins</span>
             </div>
 
             {/* Video Info */}
             <div className="video-info">
-                <h3 className="video-title">{title}</h3>
-                <p className="video-description">{description}</p>
-                <p className="video-date">{created_at}</p>
+                <h3 className="video-title">{video.title}</h3>
+                <p className="video-description">{video.description}</p>
+                <p className="video-date">{new Date(video.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
             </div>
 
             <style>{`
