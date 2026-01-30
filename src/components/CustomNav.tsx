@@ -14,7 +14,7 @@ const CustomNav: React.FC = () => {
             <Link to="/about" className="text-gray-700 hover:text-teal-600 transition">About</Link>
             <a href="#contact" className="text-gray-700 hover:text-teal-600 transition">Contact</a>
           </div>
-          <Link to="/learn/home" className="hidden md:block bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition">
+          <Link to="/login" className="hidden md:block bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition">
             Get Started
           </Link>
           <button 
@@ -31,9 +31,9 @@ const CustomNav: React.FC = () => {
             <a href="#courses" className="block text-gray-700 hover:text-teal-600">Courses</a>
             <a href="#about" className="block text-gray-700 hover:text-teal-600">About</a>
             <a href="#contact" className="block text-gray-700 hover:text-teal-600">Contact</a>
-            <button className="w-full bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700">
+            <Link to="/login" className="w-full bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700">
               Get Started
-            </button>
+            </Link>
           </div>
         )}
       </nav>
