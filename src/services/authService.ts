@@ -38,7 +38,7 @@ interface StoredTokens {
   userType: string;
 }
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:4081';
 const TOKENS_STORAGE_KEY = 'auth_tokens';
 
 class AuthService {
