@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLogin } from "../hooks/useAuth";
 
 interface LoginFormInputs {
   username: string;
@@ -8,7 +8,7 @@ interface LoginFormInputs {
 }
 
 const LoginPage: React.FC = () => {
-    const navigate = useNavigate();
+  const { login, loading, error } = useLogin();
   const {
     register,
     handleSubmit,
@@ -20,10 +20,8 @@ const LoginPage: React.FC = () => {
     },
   });
 
-  const onSubmit = (data: any) => {
-    console.log("Login Data:", data);
-    // Handle login logic here
-    navigate('/learn/home');
+  const onSubmit = async (data: LoginFormInputs) => {
+    await login(data.username, data.password);
   };
 
   return (
@@ -45,6 +43,16 @@ const LoginPage: React.FC = () => {
 
           {/* Form Section */}
           <form onSubmit={handleSubmit(onSubmit)} className="px-8 py-8 space-y-6">
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <p className="text-red-600 text-sm flex items-center">
+                  <span className="mr-2">⚠️</span>
+                  {error}
+                </p>
+              </div>
+            )}
+
             {/* Username Field */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -70,6 +78,7 @@ const LoginPage: React.FC = () => {
                   type="text"
                   placeholder="Enter your username"
                   className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500 transition duration-200 placeholder-gray-400"
+                  disabled={loading}
                   {...register("username", {
                     required: "Username is required",
                     minLength: {
@@ -112,6 +121,7 @@ const LoginPage: React.FC = () => {
                   type="password"
                   placeholder="Enter your password"
                   className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500 transition duration-200 placeholder-gray-400"
+                  disabled={loading}
                   {...register("password", {
                     required: "Password is required",
                     minLength: {
@@ -132,7 +142,7 @@ const LoginPage: React.FC = () => {
             {/* Remember Me & Forgot Password */}
             <div className="flex items-center justify-between text-sm">
               <label className="flex items-center cursor-pointer">
-                <input type="checkbox" className="w-4 h-4 text-teal-600 rounded" />
+                <input type="checkbox" className="w-4 h-4 text-teal-600 rounded" disabled={loading} />
                 <span className="ml-2 text-gray-700">Remember me</span>
               </label>
               <a href="#" className="text-teal-600 hover:text-teal-700 font-semibold">
@@ -143,9 +153,10 @@ const LoginPage: React.FC = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-teal-600 to-cyan-500 text-white font-bold py-3 px-4 rounded-lg hover:shadow-lg transform hover:scale-105 transition duration-200"
+              disabled={loading}
+              className="w-full bg-gradient-to-r from-teal-600 to-cyan-500 text-white font-bold py-3 px-4 rounded-lg hover:shadow-lg transform hover:scale-105 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Sign In
+              {loading ? "Signing in..." : "Sign In"}
             </button>
 
             {/* Divider */}

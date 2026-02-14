@@ -5,10 +5,9 @@ var hosturl = 'http://184.174.33.200:7001';
 
 class Api{
     async POST_(params, endpoint){
-        console.log("Get merchant Transactions")
         console.log(params)
         console.log("Url: ")
-        console.log(`${hosturl}/transaction-history`)
+        console.log(`${hosturl}${endpoint}`)
 
         const controller = new AbortController();
 

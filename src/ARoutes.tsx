@@ -2,13 +2,16 @@ import React from "react";
 import { Route, Routes, Navigate, BrowserRouter as Router } from "react-router-dom";
 import App from "./App.tsx";
 import { ApplicationProvider } from "../resources/providers/ApplicationProvider.tsx";
+import { useTokenExpiry } from './hooks/useAuth';
 import Menu from "./pages/loggedIn/Menu.tsx";
 import AboutPage from "./pages/AboutPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 const ARoutes: React.FC = () => {
   // const appContext = useContext(ApplicationContext);
+  useTokenExpiry();
 
     return <ApplicationProvider>
               <Router>
@@ -16,7 +19,7 @@ const ARoutes: React.FC = () => {
                     <Route path='/' element={<App />} />
                     <Route path='/about' element={<AboutPage />} />
                     <Route path='/login' element={<LoginPage />} />
-                    <Route path='/learn/*' element={<Menu />} />
+                    <Route path='/learn/*' element={<ProtectedRoute><Menu /></ProtectedRoute>} />
                     <Route path="*" element={<Navigate replace to="/" />} />
                 </Routes>
               </Router>
