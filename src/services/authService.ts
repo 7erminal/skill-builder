@@ -38,7 +38,7 @@ interface StoredTokens {
   userType: string;
 }
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:4081';
+const API_BASE_URL = 'https://auth.africandigitalsolutions.com';
 const TOKENS_STORAGE_KEY = 'auth_tokens';
 
 class AuthService {
@@ -97,7 +97,38 @@ class AuthService {
   async login(credentials: AuthenticationDTO): Promise<LoginTokenResponseDTO> {
     try {
       const response = await this.api.post<LoginTokenResponseDTO>(
-        '/refresh/customer/token',
+        '/v1/auth/login/token',
+        credentials
+      );
+
+      if (response.data.StatusCode === 200 && response.data.Result?.Token) {
+        // Store tokens with expiry times
+        const now = Date.now();
+        const tokens: StoredTokens = {
+          accessToken: response.data.Result.Token.AccessToken,
+          refreshToken: response.data.Result.Token.RefreshToken,
+          // Access token typically expires in 15 minutes (900 seconds)
+          accessTokenExpiresAt: now + response.data.Result.Token.ExpiresIn * 1000,
+          // Refresh token typically expires in 7 days
+          refreshTokenExpiresAt: now + 7 * 24 * 60 * 60 * 1000,
+          userType: response.data.Result.UserType,
+        };
+        this.storeTokens(tokens);
+      }
+
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * Register a customer
+   */
+  async register(credentials: AuthenticationDTO): Promise<LoginTokenResponseDTO> {
+    try {
+      const response = await this.api.post<LoginTokenResponseDTO>(
+        '/v1/auth/login/token',
         credentials
       );
 
@@ -133,7 +164,7 @@ class AuthService {
 
     try {
       const response = await this.api.post<LoginTokenResponseDTO>(
-        '/refresh-customer-access-token',
+        '/v1/auth/refresh/user/token',
         { RefreshToken: tokens.refreshToken } as RefreshTokenRequest
       );
 

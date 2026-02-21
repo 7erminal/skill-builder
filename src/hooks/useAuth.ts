@@ -3,10 +3,23 @@ import { useNavigate } from 'react-router-dom';
 import { authService } from '../services/authService';
 
 /**
+ * Utility function to safely navigate (handles missing Router context)
+ */
+const useSafeNavigate = () => {
+  let navigate: ReturnType<typeof useNavigate> | null = null;
+  try {
+    navigate = useNavigate();
+  } catch {
+    // Router context not available, navigate will be null
+  }
+  return navigate;
+};
+
+/**
  * Hook to check token expiry and handle automatic logout
  */
 export const useTokenExpiry = () => {
-  const navigate = useNavigate();
+  const navigate = useSafeNavigate();
   const [isAccessTokenExpired, setIsAccessTokenExpired] = useState(false);
   const [isRefreshTokenExpired, setIsRefreshTokenExpired] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState<{
@@ -34,7 +47,9 @@ export const useTokenExpiry = () => {
     // If refresh token expired, logout
     if (refreshExpired) {
       authService.logout();
-      navigate('/login');
+      if (navigate) {
+        navigate('/login');
+      }
       return;
     }
 
@@ -43,7 +58,9 @@ export const useTokenExpiry = () => {
       authService.refreshAccessToken().catch((error) => {
         console.error('Failed to refresh token:', error);
         authService.logout();
-        navigate('/login');
+        if (navigate) {
+          navigate('/login');
+        }
       });
     }
   }, [navigate]);
@@ -76,7 +93,7 @@ export const useTokenExpiry = () => {
 export const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
+  const navigate = useSafeNavigate();
 
   const login = useCallback(
     async (username: string, password: string) => {
@@ -88,7 +105,9 @@ export const useLogin = () => {
 
         if (response.StatusCode === 200) {
           // Navigate to home on successful login
-          navigate('/learn/home');
+          if (navigate) {
+            navigate('/learn/home');
+          }
         } else {
           setError(response.StatusDesc || 'Login failed');
         }
@@ -111,13 +130,13 @@ export const useLogin = () => {
  */
 export const useAuthGuard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useSafeNavigate();
 
   useEffect(() => {
     const authenticated = authService.isAuthenticated();
     setIsAuthenticated(authenticated);
 
-    if (!authenticated) {
+    if (!authenticated && navigate) {
       navigate('/login');
     }
   }, [navigate]);

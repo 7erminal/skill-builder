@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useLogin } from "../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 interface LoginFormInputs {
   username: string;
@@ -172,9 +173,9 @@ const LoginPage: React.FC = () => {
             {/* Sign Up Link */}
             <p className="text-center text-gray-700">
               Don't have an account?{" "}
-              <a href="#" className="text-teal-600 font-bold hover:text-teal-700">
+              <Link to="/signup" className="text-teal-600 font-bold hover:text-teal-700">
                 Sign up
-              </a>
+              </Link>
             </p>
           </form>
         </div>

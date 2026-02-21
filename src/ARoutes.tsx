@@ -7,6 +7,7 @@ import Menu from "./pages/loggedIn/Menu.tsx";
 import AboutPage from "./pages/AboutPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import ProtectedRoute from './components/ProtectedRoute';
+import SignUpPage from "./pages/SignUpPage.tsx";
 
 
 const ARoutes: React.FC = () => {
@@ -19,6 +20,7 @@ const ARoutes: React.FC = () => {
                     <Route path='/' element={<App />} />
                     <Route path='/about' element={<AboutPage />} />
                     <Route path='/login' element={<LoginPage />} />
+                    <Route path='/signup' element={<SignUpPage />} />
                     <Route path='/learn/*' element={<ProtectedRoute><Menu /></ProtectedRoute>} />
                     <Route path="*" element={<Navigate replace to="/" />} />
                 </Routes>

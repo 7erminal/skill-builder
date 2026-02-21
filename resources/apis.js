@@ -1,7 +1,7 @@
 import axios from 'axios'
 // import cookie from "react-cookies";
 
-var hosturl = 'http://184.174.33.200:7001';
+var hosturl = 'https://learn-api.africandigitalsolutions.com';
 
 class Api{
     async POST_(params, endpoint){
